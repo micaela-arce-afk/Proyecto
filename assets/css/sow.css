@@ -1,30 +1,260 @@
+/*
+  sow.css
+  Estilos específicos del informe "Some Outstanding Webs" (SOW)
+  - Portada animada con efecto de tipeo corregido
+  - Menú sticky con transiciones suaves
+  - Layout de secciones de análisis
+  - Grid de capturas
+  - Estilos de hover, animaciones y mejoras responsivas
+*/
+
+/* ---------------------------------------------------------
+   PORTADA ANIMADA
+   --------------------------------------------------------- */
+.cover {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  height: 100vh;
+  background: linear-gradient(135deg, #1f2937 0%, #111827 100%);
+  color: #fff;
+  text-align: center;
+}
+
+.cover .title {
+  font-size: clamp(2rem, 6vw, 4rem);
+  font-weight: 700;
+  color: #fff;
+  text-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  overflow: hidden;
+  white-space: nowrap;
+  border-right: 0.15em solid currentColor;
+  display: inline-block;
+  width: 0;
+  animation: typing 3s steps(25, end) forwards,
+    /* más pasos para no cortar "Webs" */ blink-caret 0.75s step-end infinite;
+}
+
+@keyframes typing {
+  from {
+    width: 0;
+  }
+  to {
+    width: 25ch;
+  } /* ancho final ajustado para todo el texto */
+}
+
+@keyframes blink-caret {
+  50% {
+    border-color: transparent;
+  }
+}
+
+.cover p {
+  margin-top: 1rem;
+  font-size: 1.2rem;
+  color: #081529;
+}
+
+/* ---------------------------------------------------------
+   HEADER Y MENÚ FIJO
+   --------------------------------------------------------- */
 header {
+  position: relative;
+  z-index: 1000;
+}
+
+header h1 {
+  font-size: 1.75rem;
+  font-weight: 700;
+  padding: 1rem;
+  text-align: center;
+  color: #fff; /* H1 portada blanco */
+}
+
+nav {
+  position: sticky;
+  top: 0;
+  z-index: 999;
   background: #fff;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
-nav {
-  position: fixed;
-  top: 0;
-  z-index: 1000;
-}
+
 nav ul {
   list-style: none;
   margin: 0;
-  padding: 0;
+  padding: 0.75rem 1rem;
   display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 1rem;
 }
-nav ul li {
-  margin-right: 1rem;
-}
+
 nav ul li a {
   text-decoration: none;
   color: #333;
+  padding: 0.5rem 0.75rem;
+  border-radius: 6px;
+  transition: color 0.3s, background-color 0.3s;
 }
-html {
-  scroll-behavior: smooth;
-}
+
 nav ul li a:hover,
 nav ul li a:focus {
   color: #007acc;
+  background-color: rgba(0, 122, 204, 0.08);
   outline: none;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+/* ---------------------------------------------------------
+   SECCIONES DE ANÁLISIS
+   --------------------------------------------------------- */
+main {
+  padding: 2rem 1rem;
+}
+
+section {
+  margin-bottom: 4rem;
+  scroll-margin-top: 6rem;
+}
+
+section h2 {
+  margin-bottom: 1rem;
+  color: #111827;
+  border-left: 5px solid #007acc;
+  padding-left: 0.5rem;
+}
+
+/* Iframe del sitio */
+iframe {
+  width: 100%;
+  border: none;
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  margin-bottom: 1.5rem;
+}
+
+/* Texto del análisis */
+.analysis-text {
+  columns: 1;
+  column-gap: 2rem;
+  margin-bottom: 2rem;
+}
+
+@media (min-width: 800px) {
+  .analysis-text {
+    columns: 2;
+  }
+}
+
+.analysis-text p {
+  margin-bottom: 1rem;
+  text-align: justify;
+}
+
+.analysis-text ul {
+  break-inside: avoid;
+  margin-bottom: 1rem;
+}
+
+.analysis-text li {
+  margin-bottom: 0.5rem;
+}
+
+/* ---------------------------------------------------------
+   GRID DE CAPTURAS
+   --------------------------------------------------------- */
+.screenshots {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.screenshots img {
+  width: 100%;
+  border-radius: 10px;
+  border: 1px solid #ddd;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.screenshots img:hover {
+  transform: scale(1.05);
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.15);
+}
+
+/* ---------------------------------------------------------
+   CONCLUSIÓN Y REFLEXIÓN
+   --------------------------------------------------------- */
+.conclusion {
+  font-weight: 500;
+  border-top: 2px solid #007acc;
+  padding-top: 1rem;
+  margin-top: 2rem;
+  color: #333;
+  font-style: italic;
+}
+
+/* ---------------------------------------------------------
+   FOOTER
+   --------------------------------------------------------- */
+footer {
+  text-align: center;
+  padding: 2rem 1rem;
+  border-top: 1px solid #ddd;
+  color: #666;
+  background-color: #fafafa;
+}
+
+/* ---------------------------------------------------------
+   ANIMACIONES SUAVES DE ENTRADA (Scroll Reveal básico)
+   --------------------------------------------------------- */
+.reveal {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ---------------------------------------------------------
+   MODO OSCURO (opcional)
+   --------------------------------------------------------- */
+@media (prefers-color-scheme: dark) {
+  body {
+    background: #111827;
+    color: #e5e7eb;
+  }
+  nav {
+    background: #1f2937;
+  }
+  nav ul li a {
+    color: #e5e7eb;
+  }
+  nav ul li a:hover {
+    color: #93c5fd;
+  }
+  section h2 {
+    color: #f9fafb;
+    border-left-color: #93c5fd;
+  }
+  iframe {
+    box-shadow: 0 4px 12px rgba(255, 255, 255, 0.1);
+  }
+  .conclusion {
+    border-top-color: #93c5fd;
+  }
+  footer {
+    background-color: #1f2937;
+    color: #9ca3af;
+  }
 }
