@@ -1,18 +1,11 @@
-/* =========================================================
-   SOME OUTSTANDING WEBS - SUAVE Y ÉTEREA PASTEL
-   ========================================================= */
-
-/* ----------------------------------------
-   VARIABLES de color y espacio
----------------------------------------- */
 :root {
   --max-width: 1200px;
   --content-padding: 1rem;
-  --color-bg: #fefcfb; /* fondo general muy suave */
-  --color-ink: #3a3a3a; /* texto principal */
-  --color-muted: #8b8b8b; /* texto secundario */
-  --color-accent: #cba6f7; /* lilac pastel */
-  --color-accent-2: #a0c4ff; /* azul pastel */
+  --color-bg: #fefcfb;
+  --color-ink: #3a3a3a;
+  --color-muted: #8b8b8b;
+  --color-accent: #cba6f7;
+  --color-accent-2: #a0c4ff;
   --color-border: #e3e3e3;
   --font-sans: "Helvetica Neue", Helvetica, Arial, sans-serif;
   --font-mono: "Courier New", monospace;
@@ -22,11 +15,10 @@
   --space-lg: 1.5rem;
   --space-xl: 2.5rem;
   --shadow-soft: 0 6px 18px rgba(16, 24, 40, 0.06);
+  --glow: 0 0 20px rgba(203, 166, 247, 0.4);
+  --glow-subtle: 0 0 10px rgba(203, 166, 247, 0.2);
 }
 
-/* ----------------------------------------
-   RESET y base
----------------------------------------- */
 *,
 *::before,
 *::after {
@@ -53,29 +45,30 @@ iframe {
   display: block;
   max-width: 100%;
   height: auto;
+  transition: transform 0.35s ease, box-shadow 0.35s ease;
 }
 
 a {
-  color: var(--color-accent);
+  color: var(--color-ink);
   text-decoration: none;
-  transition: color 0.3s;
+  transition: color 0.3s ease, text-shadow 0.3s ease, transform 0.2s ease;
 }
 a:hover,
 a:focus {
   color: var(--color-accent-2);
+  text-shadow: var(--glow-subtle);
+  transform: translateY(-1px);
   outline: none;
 }
 
-/* ----------------------------------------
-   MENÚ FIXED CON TÍTULO
----------------------------------------- */
+/* Menú fixed */
 header nav {
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
   z-index: 1000;
-  background: #ffffffcc; /* semitransparente */
+  background: #ffffffcc;
   backdrop-filter: blur(5px);
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
   display: flex;
@@ -88,6 +81,7 @@ nav .nav-title {
   font-weight: 700;
   font-size: 1.25rem;
   color: var(--color-ink);
+  text-shadow: var(--glow-subtle);
 }
 
 nav ul {
@@ -99,33 +93,31 @@ nav ul {
 nav ul li a {
   padding: 0.5rem 0.75rem;
   border-radius: 6px;
-  color: var(--color-ink);
   font-weight: 500;
-  transition: 0.3s;
+  color: var(--color-ink);
+  transition: 0.4s;
 }
-
 nav ul li a:hover,
-nav ul li a:focus,
-nav ul li a.active {
+nav ul li a:focus {
   background: var(--color-accent);
   color: #fff;
+  box-shadow: var(--glow);
+  transform: translateY(-2px) scale(1.03);
 }
 
-/* Añade margen superior al main para que no quede tapado por el fixed menu */
+/* Margen superior main */
 main {
   padding-top: 6rem;
 }
 
-/* ----------------------------------------
-   PORTADA ANIMADA
----------------------------------------- */
+/* Portada animada */
 .cover {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   height: 100vh;
-  background: linear-gradient(135deg, #fdf6ff 0%, #e0f7ff 100%);
+  background: linear-gradient(135deg, #fdf6ff 0%, #e0f7ff 50%, #cdefff 100%);
   text-align: center;
 }
 
@@ -138,6 +130,7 @@ main {
   border-right: 0.15em solid var(--color-accent);
   display: inline-block;
   width: 0;
+  text-shadow: var(--glow);
   animation: typing 3s steps(30, end) forwards,
     blink-caret 0.75s step-end infinite;
 }
@@ -161,52 +154,65 @@ main {
   font-size: 1.25rem;
   color: var(--color-muted);
   opacity: 0;
-  animation: fadeIn 2s forwards 2s; /* aparece después del H1 */
+  transform: translateY(20px);
+  animation: fadeInUp 2s forwards 2s;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
 }
-@keyframes fadeIn {
+@keyframes fadeInUp {
   from {
     opacity: 0;
+    transform: translateY(20px);
   }
   to {
     opacity: 1;
+    transform: translateY(0);
   }
 }
 
-/* ----------------------------------------
-   SECCIONES
----------------------------------------- */
+.cover .subtitle svg {
+  width: 24px;
+  height: 24px;
+  fill: var(--color-accent);
+  animation: float 3s ease-in-out infinite alternate;
+}
+@keyframes float {
+  from {
+    transform: translateY(0);
+  }
+  to {
+    transform: translateY(-6px);
+  }
+}
+
+/* Secciones */
 section {
   margin-bottom: 4rem;
   scroll-margin-top: 6rem;
 }
-
 section h2 {
   font-size: clamp(1.5rem, 2vw, 2rem);
   margin-bottom: var(--space-md);
-  color: var(--color-ink);
+  color: #2c2c2c;
   border-left: 5px solid var(--color-accent);
   padding-left: 0.5rem;
 }
 
-/* ----------------------------------------
-   IFRAME
----------------------------------------- */
+/* Iframes */
 iframe {
   width: 100%;
   border: none;
   border-radius: 12px;
   box-shadow: var(--shadow-soft);
   margin-bottom: 1.5rem;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 iframe:hover {
-  transform: scale(1.02);
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+  transform: scale(1.05) translateY(-3px);
+  box-shadow: 0 10px 25px rgba(203, 166, 247, 0.35);
 }
 
-/* ----------------------------------------
-   ANÁLISIS TEXTO
----------------------------------------- */
+/* Texto y análisis */
 .analysis-text {
   columns: 1;
   column-gap: 2rem;
@@ -220,6 +226,10 @@ iframe:hover {
 .analysis-text p {
   margin-bottom: 1rem;
   text-align: justify;
+  background: #fff;
+  padding: 1rem;
+  border-radius: 12px;
+  box-shadow: var(--shadow-soft);
 }
 .analysis-text ul {
   break-inside: avoid;
@@ -229,9 +239,7 @@ iframe:hover {
   margin-bottom: 0.5rem;
 }
 
-/* ----------------------------------------
-   GRID DE CAPTURAS
----------------------------------------- */
+/* Capturas */
 .screenshots {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
@@ -243,16 +251,14 @@ iframe:hover {
   border-radius: 12px;
   border: 1px solid var(--color-border);
   box-shadow: var(--shadow-soft);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  transition: transform 0.35s ease, box-shadow 0.35s ease;
 }
 .screenshots img:hover {
-  transform: scale(1.05);
-  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.15);
+  transform: scale(1.05) translateY(-3px);
+  box-shadow: 0 10px 25px rgba(203, 166, 247, 0.35);
 }
 
-/* ----------------------------------------
-   CONCLUSIÓN
----------------------------------------- */
+/* Conclusión */
 .conclusion {
   font-weight: 500;
   border-top: 2px solid var(--color-accent);
@@ -262,33 +268,28 @@ iframe:hover {
   color: var(--color-ink);
 }
 
-/* ----------------------------------------
-   FOOTER
----------------------------------------- */
+/* Footer */
 footer {
   text-align: center;
-  padding: 2rem 1rem;
-  border-top: 1px solid var(--color-border);
+  padding: 3rem 1rem;
+  border-top: 2px solid var(--color-accent);
   color: var(--color-muted);
-  background-color: #fefcfb;
+  font-size: 0.95rem;
+  background: linear-gradient(90deg, #fefcfb 0%, #f5f5f5 100%);
 }
 
-/* ----------------------------------------
-   ANIMACIONES REVEAL
----------------------------------------- */
+/* Scroll reveal */
 .reveal {
   opacity: 0;
-  transform: translateY(40px);
+  transform: translateY(30px) scale(0.98);
   transition: opacity 0.8s ease, transform 0.8s ease;
 }
 .reveal.visible {
   opacity: 1;
-  transform: translateY(0);
+  transform: translateY(0) scale(1);
 }
 
-/* ----------------------------------------
-   RESPONSIVE
----------------------------------------- */
+/* Responsive */
 @media (max-width: 768px) {
   html {
     font-size: 14px;
@@ -299,10 +300,127 @@ footer {
   .analysis-text {
     columns: 1;
   }
+  .screenshots {
+    grid-template-columns: 1fr;
+  }
   .cover .title {
-    font-size: clamp(1.75rem, 8vw, 3rem);
+    font-size: clamp(1.5rem, 10vw, 2.5rem);
   }
   .cover .subtitle {
-    font-size: 1rem;
+    font-size: 0.95rem;
+    flex-direction: column;
+    gap: 0.25rem;
   }
+}
+
+/* --------- NUEVO DISEÑO DE ANÁLISIS BONITO --------- */
+
+.analysis-section {
+  max-width: 1000px;
+  margin: 4rem auto;
+  padding: 2rem;
+  background: #fdfdfd;
+  border-radius: 20px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+  transition: all 0.3s ease;
+}
+
+.analysis-section:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
+}
+
+.section-title {
+  text-align: center;
+  font-size: 2.2rem;
+  margin-bottom: 2rem;
+  font-weight: 700;
+  color: #111;
+  letter-spacing: 1px;
+}
+
+.project-card {
+  display: flex;
+  flex-direction: column;
+  gap: 1.8rem;
+}
+
+.project-card iframe {
+  width: 100%;
+  height: 500px;
+  border-radius: 14px;
+  border: none;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+}
+
+/* --------- CONTENIDO --------- */
+
+.project-content {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  line-height: 1.6;
+  color: #333;
+}
+
+.project-content h3 {
+  font-size: 1.8rem;
+  font-weight: 600;
+  text-align: center;
+  color: var(--color-ink);
+  margin-bottom: 1rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.subcard {
+  background: #fff;
+  border-radius: 14px;
+  padding: 1.5rem 2rem;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.05);
+  transition: background 0.3s ease, transform 0.3s ease;
+  display: grid;
+}
+
+.subcard:hover {
+  background: #f9f9ff;
+  transform: translateY(-3px);
+}
+
+.subcard h4 {
+  font-size: 1.1rem;
+  color: #222;
+  margin-bottom: 0.6rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.subcard p {
+  font-size: 0.95rem;
+  color: #444;
+  text-align: justify;
+}
+
+/* Animación de entrada */
+.analysis-section {
+  opacity: 0;
+  transform: translateY(20px);
+  animation: fadeInUp 0.8s ease forwards;
+}
+
+@keyframes fadeInUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.visual-images {
+  width: 100%;
+  height: auto;
+  padding-top: 1rem;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
 }
