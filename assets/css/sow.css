@@ -424,3 +424,132 @@ footer {
   grid-template-columns: 1fr 1fr;
   gap: 1rem;
 }
+/* === MODO OSCURO Y BOTÓN === */
+
+/* Botón dark mode */
+#dark-toggle {
+  background: var(--color-accent);
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  padding: 0.6rem 1.2rem;
+  font-size: 0.95rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: var(--shadow-soft);
+}
+
+#dark-toggle:hover {
+  background: var(--color-accent-2);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+}
+
+/* Contenedor del botón dentro del menú */
+.dark-mode-toggle {
+  margin-left: 1rem;
+}
+
+/* Estilos del modo oscuro */
+body.dark-mode {
+  background-color: #1e1e2e;
+  color: #e7e7f0;
+}
+
+body.dark-mode header nav {
+  background: rgba(40, 40, 58, 0.9);
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.4);
+}
+
+body.dark-mode .analysis-section {
+  background: #2b2b3b;
+  color: #e7e7f0;
+}
+
+body.dark-mode .subcard {
+  background: #36364b;
+}
+
+body.dark-mode .subcard:hover {
+  background: #3f3f58;
+}
+
+body.dark-mode section h2,
+body.dark-mode h3,
+body.dark-mode h4 {
+  color: #f2f2ff;
+  border-color: var(--color-accent-2);
+}
+
+body.dark-mode footer {
+  background: #252538;
+  color: #c2c2dd;
+  border-top-color: var(--color-accent-2);
+}
+
+/* --- AJUSTES EXTRA PARA MODO OSCURO --- */
+
+/* Fondo y texto de la portada */
+body.dark-mode .cover {
+  background: linear-gradient(135deg, #2a2a3f 0%, #1f2230 50%, #25283b 100%);
+}
+
+body.dark-mode .cover .title {
+  color: #f2f2ff;
+  text-shadow: 0 0 15px rgba(160, 196, 255, 0.4);
+  border-right-color: var(--color-accent-2);
+}
+
+body.dark-mode .cover .subtitle {
+  color: #d0d0e8;
+}
+
+body.dark-mode .cover .subtitle svg {
+  fill: var(--color-accent-2);
+}
+
+/* Textos generales */
+body.dark-mode p,
+body.dark-mode li {
+  color: #eaeaf5;
+}
+
+/* Fondo de análisis y secciones */
+body.dark-mode section {
+  background: transparent;
+}
+
+body.dark-mode .project-content,
+body.dark-mode .analysis-text p {
+  background: #2f2f45;
+  color: #eaeaf5;
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
+}
+
+/* Efectos hover sutiles */
+body.dark-mode a:hover {
+  color: var(--color-accent);
+  text-shadow: 0 0 10px rgba(203, 166, 247, 0.4);
+}
+
+/* --- AJUSTE DEL MENÚ EN MODO OSCURO --- */
+body.dark-mode header nav {
+  background: #1f1f2b;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
+}
+
+body.dark-mode .nav-title {
+  color: #ffffff;
+  text-shadow: 0 0 10px rgba(203, 166, 247, 0.4);
+}
+
+body.dark-mode nav ul li a {
+  color: #f2f2ff;
+}
+
+body.dark-mode nav ul li a:hover {
+  background: var(--color-accent-2);
+  color: #1f1f2b;
+  box-shadow: 0 0 15px rgba(160, 196, 255, 0.6);
+}
